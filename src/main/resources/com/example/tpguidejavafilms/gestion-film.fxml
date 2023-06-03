@@ -62,7 +62,8 @@
          <TextField fx:id="tfActeurPrincipal" GridPane.columnIndex="4" GridPane.rowIndex="1" />
          <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#ajouterFilm" text="Ajouter" GridPane.columnIndex="5" GridPane.rowIndex="1" />
          <Button fx:id="btnDeleteAll" mnemonicParsing="false" onAction="#viderTableau" prefHeight="25.0" prefWidth="320.0" text="Supprimer tous les films" textFill="RED" GridPane.columnSpan="3" GridPane.rowIndex="6" />
-         <Button fx:id="BtnDeleteOne" mnemonicParsing="false" onAction="#viderLigneTableau" prefHeight="25.0" prefWidth="127.0" text="Supprimer le film" textFill="RED" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+         <Button fx:id="btnDeleteOne" mnemonicParsing="false" onAction="#viderLigneTableau" prefHeight="25.0" prefWidth="127.0" text="Supprimer le film" textFill="RED" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="6" />
       </children>
    </GridPane>
+   <Button fx:id="btnImport" mnemonicParsing="false" onAction="#importerFilms" text="Importer CSV" />
 </VBox>

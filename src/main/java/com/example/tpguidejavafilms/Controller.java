@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,7 +22,10 @@ public class Controller implements Initializable {
     private Button btnDeleteAll;
 
     @FXML
-    private Button BtnDeleteOne;
+    private Button btnDeleteOne;
+
+    @FXML
+    private Button btnImport;
 
     @FXML
     private TextField tfRang;
@@ -65,22 +69,24 @@ public class Controller implements Initializable {
         colAnnee.setCellValueFactory(new PropertyValueFactory<Film, Integer>("annee"));
         colActeurPrincipal.setCellValueFactory(new PropertyValueFactory<Film, String>("acteurPrincipal"));
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("films.csv")); // je n'arrives pas à utiliser .files().skip(1) parce qu'il faut changer le type de br etc. Faire une boucle for plus tard au lieu d'un conmpteur dans un while!
-            String line = "" ;
-            String[] filmData = null;
-            Integer counter = 0;
-            while((line = br.readLine()) != null) {
-                if (counter == 0){}
-                else {
-                    filmData = line.split(",");
-                    ajouterFilmDansTab(Integer.valueOf(filmData[0]), filmData[1], filmData[2], Integer.valueOf((filmData[3])), filmData[4]);
-                }
-                counter++;
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            BufferedReader br = new BufferedReader(new FileReader("films.csv")); // je n'arrives pas à utiliser .files().skip(1) parce qu'il faut changer le type de br etc. Faire une boucle for plus tard au lieu d'un conmpteur dans un while!
+//            String line = "" ;
+//            String[] filmData = null;
+//            Integer counter = 0;
+//            while((line = br.readLine()) != null) {
+//                if (counter == 0){}
+//                else {
+//                    filmData = line.split(",");
+//                    ajouterFilmDansTab(Integer.valueOf(filmData[0]), filmData[1], filmData[2], Integer.valueOf((filmData[3])), filmData[4]);
+//                }
+//                counter++;
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+
+
     }
 
     @FXML
@@ -125,5 +131,28 @@ public class Controller implements Initializable {
     @FXML
     public void viderLigneTableau(){
         table.getItems().removeAll(table.getSelectionModel().getSelectedItems());
+    }
+
+    @FXML
+    public void importerFilms(){
+        FileChooser fl = new FileChooser();
+        fl.setTitle("Open Resource File");
+        fl.showOpenDialog(Stage);
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(""  + ".csv"));
+                String line = "";
+                String[] filmData = null;
+                Integer counter = 0;
+                while((line = br.readLine()) != null) {
+                    if (counter == 0){}
+                    else {
+                        filmData = line.split(",");
+                        ajouterFilmDansTab(Integer.valueOf(filmData[0]), filmData[1], filmData[2], Integer.valueOf((filmData[3])), filmData[4]);
+                    }
+                    counter++;
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
     }
 }
